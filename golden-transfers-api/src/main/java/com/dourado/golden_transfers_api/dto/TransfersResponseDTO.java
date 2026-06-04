@@ -1,52 +1,19 @@
-package com.dourado.golden_transfers_api.model;
+package com.dourado.golden_transfers_api.dto;
+
+import com.dourado.golden_transfers_api.model.Transfers;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+public class TransfersResponseDTO {
 
-@Entity
-public class Transfers {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false, length = 10)
     private String contaOrigem;
-
-    @Column(nullable = false, length = 10)
     private String contaDestino;
-
-    @Column(nullable = false)
     private BigDecimal valor;
-
-    @Column(nullable = false)
     private BigDecimal taxa;
-
-    @Column(nullable = false)
     private LocalDate dataTransferencia;
-
-    @Column(nullable = false)
     private LocalDate dataAgendamento;
-
-    public Transfers() {}
-
-    public Transfers(Long id, String contaOrigem, String contaDestino,
-                     BigDecimal valor, BigDecimal taxa,
-                     LocalDate dataTransferencia, LocalDate dataAgendamento) {
-        this.id = id;
-        this.contaOrigem = contaOrigem;
-        this.contaDestino = contaDestino;
-        this.valor = valor;
-        this.taxa = taxa;
-        this.dataTransferencia = dataTransferencia;
-        this.dataAgendamento = dataAgendamento;
-    }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -68,4 +35,16 @@ public class Transfers {
 
     public LocalDate getDataAgendamento() { return dataAgendamento; }
     public void setDataAgendamento(LocalDate dataAgendamento) { this.dataAgendamento = dataAgendamento; }
+
+    public static TransfersResponseDTO fromEntity(Transfers t) {
+        TransfersResponseDTO dto = new TransfersResponseDTO();
+        dto.setId(t.getId());
+        dto.setContaOrigem(t.getContaOrigem());
+        dto.setContaDestino(t.getContaDestino());
+        dto.setValor(t.getValor());
+        dto.setTaxa(t.getTaxa());
+        dto.setDataTransferencia(t.getDataTransferencia());
+        dto.setDataAgendamento(t.getDataAgendamento());
+        return dto;
+    }
 }
