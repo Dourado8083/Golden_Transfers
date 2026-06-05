@@ -13,7 +13,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/transfers")
-@CrossOrigin(origins = "*")
 public class TransfersController {
 
     @Autowired

@@ -1,0 +1,37 @@
+# ====================================================================
+# CONFIGURAÇÕES GERAIS (Editor & IDEs)
+# ====================================================================
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.history/
+
+# ====================================================================
+# BACK-END (Java / Maven / Gradle) - Ajustado para a subpasta API
+# ====================================================================
+golden-transfers-api/target/
+golden-transfers-api/bin/
+golden-transfers-api/.classpath
+golden-transfers-api/.project
+golden-transfers-api/.settings/
+golden-transfers-api/*.mvn/
+golden-transfers-api/mvnw
+golden-transfers-api/mvnw.cmd
+
+# ====================================================================
+# FRONT-END (Angular / Node) - Ajustado para a subpasta Front
+# ====================================================================
+golden-transfers-front/node_modules/
+golden-transfers-front/.angular/
+golden-transfers-front/dist/
+golden-transfers-front/.sass-cache/
+golden-transfers-front/connect.lock
+golden-transfers-front/coverage/
+golden-transfers-front/libpeerconnection.log
+golden-transfers-front/testem.log
+golden-transfers-front/npm-debug.log
+golden-transfers-front/yarn-error.log
