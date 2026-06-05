@@ -1,4 +1,4 @@
-# Golden Transfers API
+## Golden Transfers API
 
 Uma API REST para agendamento de transferências financeiras desenvolvida como parte de um desafio técnico.
 
@@ -83,3 +83,54 @@ docker-compose down
 ### Acesso
 
 Swagger para testar os endpoints:
+http://localhost:8080/swagger-ui/index.html
+
+Console do H2 para visualizar o banco:
+http://localhost:8080/h2-console
+> JDBC URL: `jdbc:h2:mem:golden_db` | Usuário: `gusta` | Senha: *(vazio)*
+
+## Endpoints
+
+| Método | URL | Descrição |
+|--------|-----|-----------|
+| `POST` | `/api/transfers` | Agenda uma nova transferência |
+| `GET` | `/api/transfers` | Lista todos os agendamentos |
+
+### Exemplo de requisição POST
+
+```json
+{
+  "contaOrigem": "1234567890",
+  "contaDestino": "0987654321",
+  "valor": 1000.00,
+  "dataTransferencia": "2026-06-20"
+}
+```
+
+### Exemplo de resposta
+
+```json
+{
+  "id": 1,
+  "contaOrigem": "1234567890",
+  "contaDestino": "0987654321",
+  "valor": 1000.00,
+  "taxa": 82.00,
+  "dataTransferencia": "2026-06-20",
+  "dataAgendamento": "2026-06-05"
+}
+```
+
+## Testes
+
+Para rodar os testes:
+```bash
+mvn test
+```
+
+Os testes cobrem as regras de cálculo de taxa de cada faixa, a factory que seleciona a estratégia correta e a service com mocks do repositório e da factory.
+
+## Observações
+
+- O Lombok está configurado no projeto, porém devido a um problema de processamento no ambiente local, os getters e setters foram implementados manualmente em algumas classes. Assim que o ambiente estiver corrigido, o código será revertido para as anotações do Lombok.
+- O frontend em Vue.js está sendo desenvolvido em repositório separado.
