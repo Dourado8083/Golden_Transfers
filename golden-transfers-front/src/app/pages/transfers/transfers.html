@@ -1,0 +1,79 @@
+<div class="transfers-container">
+  
+  <form (ngSubmit)="agendar()" class="transfer-form">
+    <h2>Agendar Transferência</h2>
+    
+    <div class="form-group">
+      <label for="contaOrigem">Conta de Origem</label>
+      <input type="text" 
+             id="contaOrigem"
+             [ngModel]="formModel().contaOrigem" 
+             (ngModelChange)="atualizarCampo('contaOrigem', $event)"
+             name="contaOrigem" 
+             placeholder="Digite 5 numeros" 
+             required>
+    </div>
+
+    <div class="form-group">
+      <label for="contaDestino">Conta de Destino</label>
+      <input type="text" 
+             id="contaDestino"
+             [ngModel]="formModel().contaDestino" 
+             (ngModelChange)="atualizarCampo('contaDestino', $event)"
+             name="contaDestino" 
+             placeholder="Digite 5 numeros" 
+             required>
+    </div>
+
+    <div class="form-group">
+      <label for="valor">Valor (R$)</label>
+      <input type="number" 
+             id="valor"
+             [ngModel]="formModel().valor" 
+             (ngModelChange)="atualizarCampo('valor', $event)"
+             name="valor" 
+             placeholder="0.00" 
+             min="0.01" 
+             required>
+    </div>
+
+    <div class="form-group">
+      <label for="dataTransferencia">Data da Transferência</label>
+      <input type="date" 
+             id="dataTransferencia"
+             [ngModel]="formModel().dataTransferencia" 
+             (ngModelChange)="atualizarCampo('dataTransferencia', $event)"
+             name="dataTransferencia" 
+             required>
+    </div>
+
+    <button type="submit">Confirmar Agendamento</button>
+  </form>
+
+  <div class="transfer-list">
+    <h2>Histórico</h2>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Origem</th>
+            <th>Destino</th>
+            <th>Valor</th>
+            <th>Taxa</th>
+            <th>Agendado para</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of transfers$ | async">
+            <td>{{ item.contaOrigem }}</td>
+            <td>{{ item.contaDestino }}</td>
+            <td>{{ item.valor | currency:'BRL' }}</td>
+            <td>{{ item.taxa | currency:'BRL' }}</td>
+            <td>{{ item.dataTransferencia | date:'dd/MM/yyyy' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
