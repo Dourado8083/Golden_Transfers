@@ -45,14 +45,16 @@ Foi utilizado o **H2** como banco de dados em memória, conforme solicitado. Os 
 - **Springdoc OpenAPI (Swagger) 1.7.0**
 - **JUnit 5**
 - **Mockito**
+- **Docker**
 
 ## Como Rodar o Projeto
 
 ### Pré-requisitos
 - Java 11 instalado
 - Maven instalado
+- Docker e Docker Compose instalados (opcional)
 
-### Passos
+### Rodando com Maven
 
 Clone o repositório:
 ```bash
@@ -65,54 +67,19 @@ Suba a aplicação:
 mvn spring-boot:run
 ```
 
-Acesse o Swagger para testar os endpoints:
-http://localhost:8080/swagger-ui/index.html
+### Rodando com Docker
 
-Acesse o console do H2 para visualizar o banco:
-http://localhost:8080/h2-console
-> JDBC URL: `jdbc:h2:mem:golden_db` | Usuário: `gusta` | Senha: *(vazio)*
-
-## Endpoints
-
-| Método | URL | Descrição |
-|--------|-----|-----------|
-| `POST` | `/api/transfers` | Agenda uma nova transferência |
-| `GET` | `/api/transfers` | Lista todos os agendamentos |
-
-### Exemplo de requisição POST
-
-```json
-{
-  "contaOrigem": "1234567890",
-  "contaDestino": "0987654321",
-  "valor": 1000.00,
-  "dataTransferencia": "2026-06-20"
-}
-```
-
-### Exemplo de resposta
-
-```json
-{
-  "id": 1,
-  "contaOrigem": "1234567890",
-  "contaDestino": "0987654321",
-  "valor": 1000.00,
-  "taxa": 82.00,
-  "dataTransferencia": "2026-06-20",
-  "dataAgendamento": "2026-06-05"
-}
-```
-
-## Testes
-
-Para rodar os testes:
 ```bash
-mvn test
+# Build e sobe o container
+docker-compose up --build
+
+# Rodar em background
+docker-compose up --build -d
+
+# Parar
+docker-compose down
 ```
 
-Os testes cobrem as regras de cálculo de taxa de cada faixa, a factory que seleciona a estratégia correta e a service com mocks do repositório e da factory.
+### Acesso
 
-## Observações
-
-- O Lombok está configurado no projeto, porém devido a um problema de processamento no ambiente local, os getters e setters foram implementados manualmente em algumas classes. Assim que o ambiente estiver corrigido, o código será revertido para as anotações do Lombok.
+Swagger para testar os endpoints:
