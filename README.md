@@ -133,4 +133,4 @@ Os testes cobrem as regras de cálculo de taxa de cada faixa, a factory que sele
 ## Observações
 
 - O Lombok está configurado no projeto, porém devido a um problema de processamento no ambiente local, os getters e setters foram implementados manualmente em algumas classes. Assim que o ambiente estiver corrigido, o código será revertido para as anotações do Lombok.
-- O frontend em Vue.js está sendo desenvolvido em repositório separado.
+
