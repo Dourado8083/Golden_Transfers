@@ -16,10 +16,10 @@ public class Transfers {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 5)
     private String contaOrigem;
 
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 5)
     private String contaDestino;
 
     @Column(nullable = false)

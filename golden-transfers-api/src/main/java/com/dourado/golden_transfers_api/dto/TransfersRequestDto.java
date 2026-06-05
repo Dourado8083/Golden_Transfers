@@ -7,11 +7,11 @@ import javax.validation.constraints.*;
 
 public class TransfersRequestDto {
     @NotBlank(message = "Conta de origem é obrigatória")
-    @Pattern(regexp = "\\d{10}", message = "Conta de origem deve ter exatamente 10 dígitos")
+    @Pattern(regexp = "\\d{5}", message = "Conta de origem deve ter exatamente 5 dígitos")
     private String contaOrigem;
 
     @NotBlank(message = "Conta de destino é obrigatória")
-    @Pattern(regexp = "\\d{10}", message = "Conta de destino deve ter exatamente 10 dígitos")
+    @Pattern(regexp = "\\d{5}", message = "Conta de destino deve ter exatamente 5 dígitos")
     private String contaDestino;
 
     @NotNull(message = "Valor é obrigatório")
