@@ -9,8 +9,10 @@
              id="contaOrigem"
              [ngModel]="formModel().contaOrigem" 
              (ngModelChange)="atualizarCampo('contaOrigem', $event)"
+             (keypress)="somenteNumero($event)"
              name="contaOrigem" 
              placeholder="Digite 5 numeros" 
+             maxlength="5"
              required>
     </div>
 
@@ -20,20 +22,21 @@
              id="contaDestino"
              [ngModel]="formModel().contaDestino" 
              (ngModelChange)="atualizarCampo('contaDestino', $event)"
+             (keypress)="somenteNumero($event)"
              name="contaDestino" 
              placeholder="Digite 5 numeros" 
+             maxlength="5"
              required>
     </div>
 
     <div class="form-group">
       <label for="valor">Valor (R$)</label>
-      <input type="number" 
+      <input type="text" 
              id="valor"
              [ngModel]="formModel().valor" 
-             (ngModelChange)="atualizarCampo('valor', $event)"
+             (ngModelChange)="atualizarValor($event)"
              name="valor" 
-             placeholder="0.00" 
-             min="0.01" 
+             placeholder="R$ 0,00" 
              required>
     </div>
 

@@ -16,7 +16,6 @@ import { TransfersRequest } from '../../core/interfaces/TransfersRequest';
 export class Transfers implements OnInit {
   transfers$!: Observable<TransfersResponse[]>;
 
-
   formModel = signal<TransfersRequest>({
     contaOrigem: '',
     contaDestino: '',
@@ -48,16 +47,44 @@ export class Transfers implements OnInit {
     this.formModel.update(form => ({ ...form, dataTransferencia: hojeStr }));
   }
 
+somenteNumero(event: KeyboardEvent): boolean {
+    return /[0-9]/.test(event.key);
+  }
 
   atualizarCampo(campo: keyof TransfersRequest, valor: any): void {
+    if (campo === 'contaOrigem' || campo === 'contaDestino') {
+      valor = valor.replace(/\D/g, '').slice(0, 5);
+    }
     this.formModel.update(form => ({
       ...form,
       [campo]: valor
     }));
   }
 
+  atualizarValor(valor: string): void {
+    const apenasNumeros = valor.replace(/\D/g, '');
+    const numero = Number(apenasNumeros) / 100;
+    const formatado = numero.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    });
+
+    this.formModel.update(form => ({
+      ...form,
+      valor: formatado as any
+    }));
+  }
+
   agendar(): void {
-    const dadosEnvio = this.formModel();
+    const form = this.formModel();
+
+    const valorNumerico = Number(
+      String(form.valor)
+        .replace(/[R$\s.]/g, '')
+        .replace(',', '.')
+    );
+
+    const dadosEnvio = { ...form, valor: valorNumerico };
 
     this.apiService.agendar(dadosEnvio).subscribe({
       next: () => {
@@ -74,7 +101,7 @@ export class Transfers implements OnInit {
     this.formModel.set({
       contaOrigem: '',
       contaDestino: '',
-      valor: 0,
+      valor: '' as any,
       dataTransferencia: this.obterDataHojeString()
     });
   }
