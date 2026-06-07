@@ -129,6 +129,11 @@ mvn test
 ```
 
 Os testes cobrem as regras de cálculo de taxa de cada faixa, a factory que seleciona a estratégia correta e a service com mocks do repositório e da factory.
+## Futuras Funcionalidades
+
+- 💳 **Transferência por Crédito** — suporte a agendamento de transferências via cartão de crédito, com cálculo de taxas e parcelamento
+- 📈 **Área de Investimento** — módulo dedicado para aplicações financeiras, permitindo ao usuário visualizar e gerenciar seus investimentos diretamente pela plataforma
+- 📱 **Aplicativo Mobile** — disponibilização do sistema na **Google Play Store** e **Apple App Store**, levando a experiência de agendamento de transferências para dispositivos móveis
 
 ## Observações
 
